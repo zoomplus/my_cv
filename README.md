@@ -1,3 +1,10 @@
+# Что за проект
+Сайт с резюме, вся верстка сделана с помощью Material UI, 
+используются разные темы для разных проектов в портфолио
+
+# Технологии в проекте
+Material UI, React, react-router, typescript
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
