@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom';
 //components
 import Dropdown from "./components/Dropdown";
 
-const Header = ({ window }) => {
+const Header = () => {
     //state
     const [avatarActive, setAvatarActive] = useState(true);
     const [dropDownActive, setDropDownActive] = useState(false);

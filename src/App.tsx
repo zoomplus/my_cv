@@ -5,7 +5,7 @@ import React, {
 
 //libs
 import { Box } from "@mui/material";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, Theme } from '@mui/material/styles';
 
 //components
 import Router from './Pages/Router';
@@ -21,7 +21,7 @@ import { defaultTheme } from './Themes/Default';
 // контекста которые оба выполняют смену темы, поэтому смена темы пробрасывается
 // через пропсы дочерним компонентам
 const App = () => {
-    const [theme, setTheme] = useState(defaultTheme);
+    const [theme, setTheme] = useState<Theme>(defaultTheme);
 
     return (
         <ThemeProvider theme={theme}>

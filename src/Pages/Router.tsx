@@ -13,7 +13,10 @@ import About from "./About";
 import { defaultTheme } from '../Themes/Default';
 import { ItalianTheme } from '../Themes/ItalianTheme';
 
-const Router = ({setTheme}) => {
+//interfaces
+import { RouterProps } from './interfaces';
+
+const Router = ({ setTheme }: RouterProps) => {
     return (
         <Container>
             <Routes>

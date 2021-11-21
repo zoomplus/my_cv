@@ -1,10 +1,19 @@
-import React, {useEffect} from 'react';
+//system
+import React, {
+    useEffect
+} from 'react';
 
-const About = ({setTheme, theme}) => {
+//interfaces
+import { AboutProps } from "./interfaces";
 
-    useEffect(() => {
+const About = ({setTheme, theme}: AboutProps) => {
+
+
+    const componentDidMount = () => {
         setTheme(theme);
-    }, []);
+    };
+    // eslint-disable-next-line
+    useEffect(componentDidMount, []);
 
     return (
         <div style={{height: '1000px'}}>

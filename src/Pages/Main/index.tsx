@@ -1,12 +1,18 @@
+//system
 import React, {
     useEffect
 } from 'react';
 
-const Main = ({setTheme, theme}) => {
+//interfaces
+import {MainProps} from "./interfaces";
 
-    useEffect(() => {
+const Main = ({setTheme, theme}: MainProps) => {
+
+    const componentDidMount = () => {
         setTheme(theme);
-    }, []);
+    };
+    // eslint-disable-next-line
+    useEffect(componentDidMount, []);
 
     return (
         <div style={{height: '1000px'}}>

@@ -11,14 +11,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Dropdown = () => {
     //state
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     //variables
     const openPopover = Boolean(anchorEl);
     const id = openPopover ? 'simple-popover' : undefined;
 
     //methods
-    const handleClick = (event) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
