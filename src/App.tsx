@@ -15,6 +15,9 @@ import Footer from "./Footer";
 //themes
 import { defaultTheme } from './Themes/Default';
 
+//data
+import projectList from './data';
+
 //1) Тема меняется после перехода по странице с работой в портфолио
 
 //2) Не стал добавлять контекст из-за того что будет не правильно иметь 2
@@ -26,7 +29,7 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box className="app" sx={{backgroundColor: "background.default"}}>
-                <Header/>
+                <Header projectList={projectList}/>
                 <Router setTheme={setTheme}/>
                 <Footer/>
             </Box>

@@ -1,3 +1,4 @@
+//system
 import React, {useState} from 'react';
 import {
     IconButton,
@@ -9,7 +10,10 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const Dropdown = () => {
+//interface
+import { DropdownProps } from "./interfaces";
+
+const Dropdown = ({ items }: DropdownProps) => {
     //state
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -58,16 +62,17 @@ const Dropdown = () => {
                         overflowY: 'scroll',
                         maxHeight: '100px'
                     }}>
-                        <ListItem disablePadding>
-                            <ListItemButton component="a" href="#simple-list">
-                                <ListItemText primary="ItalianPizza" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton component="a" href="#simple-list">
-                                <ListItemText primary="SecondMagazine" />
-                            </ListItemButton>
-                        </ListItem>
+                        {
+                            items
+                                .sort((a, b) => a.sort > b.sort ? 1 : -1)
+                                .map((item, index) => {
+                                    return <ListItem disablePadding key={index}>
+                                        <ListItemButton component="a" href={`/projects/${item.slug}/`}>
+                                            <ListItemText primary={item.name} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                })
+                        }
                     </List>
                 </nav>
             </Popover>

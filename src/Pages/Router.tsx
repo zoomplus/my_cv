@@ -8,6 +8,7 @@ import {Container} from "@mui/material";
 //pages
 import Main from './Main';
 import About from "./About";
+import Projects from './Projects/[slug]';
 
 //themes
 import { defaultTheme } from '../Themes/Default';
@@ -21,7 +22,10 @@ const Router = ({ setTheme }: RouterProps) => {
         <Container>
             <Routes>
                 <Route path='/' element={<Main theme={defaultTheme} setTheme={setTheme}/>}/>
-                <Route path='/about/' element={<About theme={ItalianTheme} setTheme={setTheme}/>}/>
+                <Route path='/about/' element={<About theme={defaultTheme} setTheme={setTheme}/>}/>
+
+                <Route path='/projects/italian/' element={<Projects slugProp="italian" theme={ItalianTheme} setTheme={setTheme}/>}/>
+                <Route path='/projects/:slug/' element={<Projects theme={defaultTheme} setTheme={setTheme}/>}/>
             </Routes>
         </Container>
     );

@@ -12,28 +12,54 @@ import {
     Typography,
     Button,
     Avatar,
+    Stack,
+    Divider,
+    Paper,
+    Box,
     Slide,
     Fade,
     useScrollTrigger
 } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+
+//hooks
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 //components
 import Dropdown from "./components/Dropdown";
 
-const Header = () => {
+//interfaces
+import { HeaderProps } from "./interfaces";
+
+const Header = ({ projectList }: HeaderProps) => {
     //state
     const [avatarActive, setAvatarActive] = useState(true);
     const [dropDownActive, setDropDownActive] = useState(false);
+
+    //hooks
     const trigger = useScrollTrigger();
+    const currentTheme = useTheme();
+    const isMobile = useMediaQuery(currentTheme.breakpoints.down('sm'));
+
+    //elements
+    const Item = styled(Paper)(({ theme }) => ({
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    }));
 
     useEffect(() => {
-        if(trigger) {
-            setAvatarActive(false);
-        } else {
-            setDropDownActive(false);
+        if(isMobile) {
+            if (trigger) {
+                setAvatarActive(false);
+            } else {
+                setDropDownActive(false);
+            }
         }
-    }, [trigger]);
+    }, [trigger, isMobile]);
 
     return (
         <AppBar position="sticky">
@@ -43,6 +69,9 @@ const Header = () => {
                     spacing={1}
                     direction="row"
                     alignItems="center"
+                    sx={{
+                        justifyContent: isMobile ? 'start' : 'space-between'
+                    }}
                 >
                     {/* transition effect */}
                     <Slide
@@ -60,12 +89,33 @@ const Header = () => {
                     </Slide>
                     {/* end */}
 
-                    <Grid item>
-                        <Typography variant="h6" color="inherit" component="div">
+                    <Grid
+                        item
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        sx={{
+                            width: 'auto',
+                            marginBottom: {
+                                sm: '5px'
+                            },
+                            marginTop: {
+                                sm: '8px'
+                            },
+                        }}
+                    >
+                        <Typography variant="h6" color="inherit" align="center" component="div">
                             <Link to={'/'}>
                                 Dmitry Zverev
                             </Link>
                         </Typography>
+                        {
+                            !isMobile ? (
+                                <Typography variant="overline" display="block" align="center" gutterBottom>
+                                    Front End React Developer
+                                </Typography>
+                            ) : null
+                        }
                     </Grid>
 
                     {/* transition effect */}
@@ -78,10 +128,69 @@ const Header = () => {
                         unmountOnExit
                     >
                         <Grid item>
-                            <Dropdown />
+                            <Dropdown items={projectList}/>
                         </Grid>
                     </Fade>
                     {/* end */}
+
+                    { !isMobile ?
+                        (
+                            projectList.length <= 2 ? (<>
+                                <Stack
+                                    direction="row"
+                                    divider={<Divider orientation="vertical" flexItem />}
+                                    spacing={1}
+                                    sx={{
+                                        paddingTop: '8px'
+                                    }}
+                                >
+                                    {
+                                        projectList
+                                            .sort((a, b) => a.sort > b.sort ? 1 : -1)
+                                            .map((item, index) => {
+                                                return <Item key={index}>
+                                                    <Link to={`/projects/${item.slug}/`}>
+                                                        <Typography variant="overline" display="block" align="center">
+                                                            {item.name}
+                                                        </Typography>
+                                                    </Link>
+                                                </Item>
+                                            })
+                                    }
+                                </Stack>
+                            </>) : (<>
+                                <Stack
+                                    direction="row"
+                                    divider={<Divider orientation="vertical" flexItem />}
+                                    spacing={1}
+                                    sx={{
+                                        paddingTop: '8px'
+                                    }}
+                                >
+                                    {
+                                        projectList
+                                            .slice(0, 2)
+                                            .sort((a, b) => a.sort > b.sort ? 1 : -1)
+                                            .map((item, index) => {
+                                                return <Item key={index}>
+                                                    <Link to={`/projects/${item.slug}/`}>
+                                                        <Typography variant="overline" display="block" align="center">
+                                                            {item.name}
+                                                        </Typography>
+                                                    </Link>
+                                                </Item>
+                                            })
+                                    }
+                                </Stack>
+                                <Box sx={{
+                                    paddingTop: '8px'
+                                }}>
+                                    <Dropdown items={projectList.slice(2, projectList.length)}/>
+                                </Box>
+
+                            </>)
+                        )
+                    : null }
 
                     <Grid item>
                         <Button variant="contained" color="secondary">

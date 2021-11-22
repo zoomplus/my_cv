@@ -1,3 +1,5 @@
-export interface test4 {
-    key: string;
+import { projectLink } from '../../interfaces';
+
+export interface DropdownProps {
+    items: projectLink[];
 }
