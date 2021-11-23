@@ -27,7 +27,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 //components
 import Dropdown from "./components/Dropdown";
-import Item from "../components/Item";
+import Item from "../components/ItemList";
 
 //interfaces
 import { HeaderProps } from "./interfaces";

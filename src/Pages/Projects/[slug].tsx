@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 //components
-import Item from "../../components/Item";
+import ItemList from "../../components/ItemList";
 
 //data
 import { getProject } from "../../data";
@@ -45,7 +45,7 @@ const Projects = ({ setTheme, theme, slugProp }: ProjectsProps) => {
 
     return (
         <Container>
-            <Grid container spacing={5} paddingY={5}>
+            <Grid container spacing={5} paddingY={4}>
                 <Grid item xs={12}>
                     <Typography variant="h5" component="div" gutterBottom>
                         { data.title }
@@ -60,7 +60,7 @@ const Projects = ({ setTheme, theme, slugProp }: ProjectsProps) => {
                         {
                             data.technologies.map((item) => {
                                 return <Grid item>
-                                    <Item>{ item }</Item>
+                                    <ItemList>{ item }</ItemList>
                                 </Grid>;
                             })
                         }
