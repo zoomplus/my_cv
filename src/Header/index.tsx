@@ -14,13 +14,11 @@ import {
     Avatar,
     Stack,
     Divider,
-    Paper,
     Box,
     Slide,
     Fade,
     useScrollTrigger
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 //hooks
@@ -29,6 +27,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 //components
 import Dropdown from "./components/Dropdown";
+import Item from "../components/Item";
 
 //interfaces
 import { HeaderProps } from "./interfaces";
@@ -42,14 +41,6 @@ const Header = ({ projectList }: HeaderProps) => {
     const trigger = useScrollTrigger();
     const currentTheme = useTheme();
     const isMobile = useMediaQuery(currentTheme.breakpoints.down('sm'));
-
-    //elements
-    const Item = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
 
     useEffect(() => {
         if(isMobile) {
