@@ -186,7 +186,7 @@ const Header = ({ projectList }: HeaderProps) => {
                     <Grid item>
                         <Button variant="contained" color="secondary">
                             <Link to={'/about/'}>
-                                Обо мне
+                                About me
                             </Link>
                         </Button>
                     </Grid>
