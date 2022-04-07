@@ -6,4 +6,7 @@
 Сделана полная интеграция проекта с темами MUI
 
 ## Технологии в проекте
-Material UI, React, react-router, typescript
+1) Material UI
+2) React
+3) react-router
+4) TypeScript
